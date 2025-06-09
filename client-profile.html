@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>క్లయింట్ ప్రొఫైల్</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-success">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="index.html">🌾 FreshFarmer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a id="home-link" class="nav-link text-white" href="index.html">హోమ్</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="farmer-login.html">రైతు లాగిన్</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="client-login.html">క్లయింట్ లాగిన్</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="register.html">రిజిస్టర్</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="client-products.html">ఉత్పత్తులు</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" onclick="logout()">లాగ్అవుట్</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="text-center">మీ ప్రొఫైల్</h2>
+        <div class="card">
+            <p><strong>యూజర్ నేమ్:</strong> <span id="username"></span></p>
+            <p><strong>రోల్:</strong> <span id="role"></span></p>
+        </div>
+
+        <h3 class="text-center mt-4">మీ కొనుగోలు సారాంశం</h3>
+        <div id="summary-loading" class="loader"></div>
+        <div id="summary-content" class="summary-card" style="display: none;">
+            <p><strong>మొత్తం కొనుగోళ్లు:</strong> <span id="total-purchases">0</span> ఉత్పత్తులు</p>
+            <p><strong>మొత్తం ఖర్చు:</strong> ₹<span id="total-spent">0</span></p>
+            <div class="text-center mt-3">
+                <a href="client-products.html" class="btn btn-primary">కొనుగోళ్లు చూడండి</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script>
+        function logout() {
+            const user = JSON.parse(localStorage.getItem("currentUser"));
+            localStorage.removeItem("currentUser");
+            window.location.href = user.role === "farmer" ? "farmer-login.html" : "client-login.html";
+        }
+
+        // Check if user is logged in
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (currentUser) {
+            document.getElementById("username").textContent = currentUser.username;
+            document.getElementById("role").textContent = currentUser.role === "client" ? "క్లయింట్" : "రైతు";
+        } else {
+            alert("దయచేసి లాగిన్ చేయండి!");
+            window.location.href = "client-login.html";
+        }
+
+        // Fetch purchase summary
+        async function loadPurchaseSummary() {
+            const summaryLoading = document.getElementById("summary-loading");
+            const summaryContent = document.getElementById("summary-content");
+
+            const response = await fetch(`http://localhost:8001/client-purchases/${currentUser.username}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+
+            summaryLoading.style.display = "none";
+            summaryContent.style.display = "block";
+
+            if (response.status === 404) {
+                document.getElementById("total-purchases").textContent = "0";
+                document.getElementById("total-spent").textContent = "0";
+                return;
+            }
+
+            const purchases = await response.json();
+            const totalPurchases = purchases.length;
+            const totalSpent = purchases.reduce((sum, purchase) => sum + (purchase.quantity * purchase.price_per_kg), 0);
+
+            document.getElementById("total-purchases").textContent = totalPurchases;
+            document.getElementById("total-spent").textContent = totalSpent.toFixed(2);
+        }
+
+        // Load summary on page load
+        window.onload = loadPurchaseSummary;
+    </script>
+</body>
+</html>

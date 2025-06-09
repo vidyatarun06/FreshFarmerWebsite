@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌾 FreshFarmer</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            margin-top: 100px; /* Adjusted since navbar height is controlled */
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+        .carousel-indicators {
+            z-index: 2;
+        }
+        .carousel-indicators [data-bs-target] {
+            background-color: #fff;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 2;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        .carousel {
+            transition: all 0.5s ease;
+        }
+        /* Navbar custom styles */
+        .navbar {
+            background-color: #4A7040 !important;
+            min-height: 60px; /* Explicitly set navbar height */
+        }
+        .navbar-nav .nav-link {
+            font-size: 1rem;
+            padding: 0.3rem 0.8rem;
+            color: white !important;
+            transition: all 0.3s ease;
+            border: 1px solid white !important;
+            border-radius: 5px;
+            margin: 0 0.2rem;
+            text-decoration: none !important;
+        }
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(255, 255, 241, 0.1);
+            border-color: #ddd !important;
+        }
+        .navbar-brand {
+            font-size: 1.3rem;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand:hover {
+            opacity: 0.8;
+        }
+        .dropdown-menu {
+            font-size: 1rem;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-item {
+            padding: 0.3rem 0.8rem;
+            transition: all 0.3s ease;
+        }
+        .dropdown-item:hover {
+            background-color: #4A7040;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">🌾 FreshFarmer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">హోమ్</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            లాగిన్
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+                            <li><a class="dropdown-item" href="farmer-login.html">రైతు లాగిన్</a></li>
+                            <li><a class="dropdown-item" href="client-login.html">క్లయింట్ లాగిన్</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">రిజిస్టర్</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="hero-image.jpg" alt="Hero Image">
+                </div>
+                <div class="carousel-item">
+                    <img src="organic-farming.jpg" alt="Organic Farming">
+                </div>
+                <div class="carousel-item">
+                    <img src="healthy-soil.jpg" alt="Healthy Soil">
+                </div>
+                <div class="carousel-item">
+                    <img src="eco-friendly.jpg" alt="Eco Friendly">
+                </div>
+                <div class="carousel-item">
+                    <img src="nutrient-rich.jpg" alt="Nutrient Rich">
+                </div>
+                <div class="carousel-item">
+                    <img src="no-chemicals.jpg" alt="No Chemicals">
+                </div>
+                <div class="carousel-item">
+                    <img src="better-taste.jpg" alt="Better Taste">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="hero-content">
+            <h1>🌾 FreshFarmer</h1>
+            <p>రైతులు మరియు క్లయింట్లను కలిపే స్థలం</p>
+            <a href="register.html" class="btn btn-primary btn-lg">ఇప్పుడే రిజిస్టర్ చేయండి</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+body {
+    background-color: #e8f5e9;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #1b5e20 !important;
+}
+
+.container {
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.purchase-card, .summary-card {
+    background-color: #f0f4c3;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #1b5e20;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #2e7d32;
+}
+
+.btn-warning {
+    background-color: #e0a800;
+    transition: background-color 0.3s;
+}
+
+.btn-warning:hover {
+    background-color: #cc9400;
+}
+
+.btn-danger {
+    background-color: #b71c1c;
+    transition: background-color 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #9e1616;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    display: none;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1b5e20;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
